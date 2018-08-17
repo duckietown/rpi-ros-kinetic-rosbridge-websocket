@@ -13,11 +13,8 @@ RUN apt-get update && apt-get install -q -y \
 		ros-$ROS_DISTRO-rosbridge-server \
     && rm -rf /var/lib/apt/lists/*
 
-# copy modified launch file
-COPY assets/rosbridge_websocket.launch /root/rosbridge_websocket.launch
-
-# copy launch script
-COPY assets/launch_websocket_bridge.sh /root/launch_websocket_bridge.sh
+# copy launch scripts
+COPY assets/* /root/
 RUN chmod +x /root/launch_websocket_bridge.sh
 
 # disable ARM
