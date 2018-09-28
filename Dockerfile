@@ -1,6 +1,8 @@
 # Base image
 FROM duckietown/rpi-duckiebot-base:master18
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 # arguments
 ARG PORT=9001
 ENV WEBSOCKET_BRIDGE_PORT $PORT
