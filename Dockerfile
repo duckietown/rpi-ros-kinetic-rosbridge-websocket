@@ -1,5 +1,5 @@
 # Base image
-FROM duckietown/rpi-duckiebot-base:latest
+FROM duckietown/rpi-duckiebot-base:master18
 
 # arguments
 ARG PORT=9001
