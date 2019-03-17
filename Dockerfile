@@ -11,7 +11,7 @@ ENV WEBSOCKET_BRIDGE_PORT $PORT
 RUN [ "cross-build-start" ]
 
 # install packages
-RUN apt-get update 
+RUN apt-get update \
   && apt-get install -q -y \
      ros-$ROS_DISTRO-rosbridge-server \
   && rm -rf /var/lib/apt/lists/*
