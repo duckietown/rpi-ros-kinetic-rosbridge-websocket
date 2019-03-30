@@ -18,7 +18,6 @@ RUN apt-get update \
 
 # copy launch scripts
 COPY assets/* /root/
-RUN chmod +x /root/launch_websocket_bridge.sh
 
 # disable ARM
 RUN [ "cross-build-end" ]
