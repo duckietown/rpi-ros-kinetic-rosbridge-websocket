@@ -1,5 +1,5 @@
 # Base image
-FROM duckietown/rpi-duckiebot-base:master18
+FROM duckietown/duckiebot-interface:master19
 
 ENV DEBIAN_FRONTEND=noninteractive
 
