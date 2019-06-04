@@ -1,4 +1,4 @@
-# rpi-duckiebot-rosbridge-websocket
+# rpi-rosbridge-websocket
 
 [![Docker Hub](https://img.shields.io/docker/pulls/duckietown/rpi-duckiebot-rosbridge-websocket.svg)](https://hub.docker.com/r/duckietown/rpi-duckiebot-rosbridge-websocket)
 
