@@ -1,5 +1,7 @@
 # DO NOT MODIFY - it is auto written from duckietown-env-developer
 
+arch=arm32v7
+
 branch=$(shell git rev-parse --abbrev-ref HEAD)
 
 # name of the repo
@@ -10,7 +12,7 @@ tag=duckietown/$(repo):$(branch)
 labels=$(shell ./labels.py)
 
 build:
-	docker build $(labels) -t $(tag) .
+	docker build $(labels) -t $(tag) --build-arg ARCH=$(arch) .
 
 push:
 	docker push $(tag)
