@@ -1,9 +1,9 @@
 ARG ARCH=arm32v7
-ARG BRANCH=master19
+ARG BRANCH
 
-FROM duckietown/${ARCH}-commons:${BRANCH}
+FROM duckietown/${ARCH}-ros-commons:${BRANCH}
 
-ENV DEBIAN_FRONTEND=noninteractive
+# configure environment
 ENV LAUNCH_FILE="${SOURCE_DIR}/launch.sh"
 
 # arguments
@@ -24,3 +24,6 @@ COPY assets/* "${SOURCE_DIR}/"
 
 # disable ARM
 RUN ["cross-build-end"]
+
+# configure CMD
+CMD ["bash", "-c", "${LAUNCH_FILE}"]
