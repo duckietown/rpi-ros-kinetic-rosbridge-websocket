@@ -1,26 +1,29 @@
-# Base image
-FROM duckietown/duckiebot-interface:master19
+ARG ARCH=arm32v7
+ARG BRANCH
 
-ENV DEBIAN_FRONTEND=noninteractive
+FROM duckietown/ros-commons:${BRANCH}-${ARCH}
+
+# configure environment
+ENV LAUNCH_FILE="${SOURCE_DIR}/launch.sh"
 
 # arguments
 ARG PORT=9001
 ENV WEBSOCKET_BRIDGE_PORT $PORT
 
 # enable ARM
-RUN [ "cross-build-start" ]
+RUN ["cross-build-start"]
 
 # install packages
 RUN apt-get update \
   && apt-get install -q -y \
-     ros-$ROS_DISTRO-rosbridge-server \
+     ros-${ROS_DISTRO}-rosbridge-server \
   && rm -rf /var/lib/apt/lists/*
 
 # copy launch scripts
-COPY assets/* /root/
+COPY assets/* "${SOURCE_DIR}/"
 
 # disable ARM
-RUN [ "cross-build-end" ]
+RUN ["cross-build-end"]
 
-# configure entrypoint
-ENTRYPOINT ["/ros_entrypoint.sh", "/root/launch_websocket_bridge.sh"]
+# configure CMD
+CMD ["bash", "-c", "${LAUNCH_FILE}"]
