@@ -1,6 +1,7 @@
 ARG ARCH=arm32v7
+ARG BASE_TAG=devel20-${ARCH}
 
-FROM duckietown/ros-commons:master19-${ARCH}
+FROM duckietown/dt-ros-commons:${BASE_TAG}
 
 # configure environment
 ENV LAUNCH_FILE="${SOURCE_DIR}/launch.sh"
@@ -8,9 +9,6 @@ ENV LAUNCH_FILE="${SOURCE_DIR}/launch.sh"
 # arguments
 ARG PORT=9001
 ENV WEBSOCKET_BRIDGE_PORT $PORT
-
-# enable ARM
-RUN ["cross-build-start"]
 
 # install packages
 RUN apt-get update \
@@ -20,9 +18,6 @@ RUN apt-get update \
 
 # copy launch scripts
 COPY assets/* "${SOURCE_DIR}/"
-
-# disable ARM
-RUN ["cross-build-end"]
 
 # configure CMD
 CMD ["bash", "-c", "${LAUNCH_FILE}"]
