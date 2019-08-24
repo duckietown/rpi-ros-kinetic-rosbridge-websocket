@@ -14,6 +14,7 @@ ARG BASE_TAG=${MAJOR}-${ARCH}
 FROM duckietown/dt-ros-commons:${BASE_TAG}
 
 # define repository path
+ARG REPO_NAME
 ARG REPO_PATH="${CATKIN_WS_DIR}/src/${REPO_NAME}"
 WORKDIR "${REPO_PATH}"
 
@@ -37,17 +38,13 @@ RUN . /opt/ros/${ROS_DISTRO}/setup.sh && \
 # <== Do not change this code
 # <==================================================
 
-ENV LAUNCHFILE="${REPO_PATH}/rosbridge_websocket.launch"
-ENV WEBSOCKET_BRIDGE_PORT $PORT
+# configure environment
+ARG PORT
+ENV LAUNCHFILE="${REPO_PATH}/run_rosbridge_websocket.sh"
+ENV WEBSOCKET_BRIDGE_PORT ${PORT}
 
 # define command
-CMD [ \
-  "bash", "-c", \
-    "roslaunch", \
-      "--wait", \
-      "${LAUNCHFILE}", \
-      "port:=${WEBSOCKET_BRIDGE_PORT}" \
-]
+CMD ["bash", "-c", "${LAUNCHFILE}"]
 
 # maintainer
 LABEL maintainer="Andrea F. Daniele (afdaniele@ttic.edu)"
