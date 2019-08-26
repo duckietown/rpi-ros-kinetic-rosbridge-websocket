@@ -35,16 +35,18 @@ RUN pip install -r ${REPO_PATH}/dependencies-py.txt
 RUN . /opt/ros/${ROS_DISTRO}/setup.sh && \
   catkin build \
     --workspace ${CATKIN_WS_DIR}/
+
+# define launch script
+ENV LAUNCHFILE "${REPO_PATH}/launch.sh"
+
+# define command
+CMD ["bash", "-c", "${LAUNCHFILE}"]
 # <== Do not change this code
 # <==================================================
 
 # configure environment
 ARG PORT
-ENV LAUNCHFILE="${REPO_PATH}/run_rosbridge_websocket.sh"
 ENV WEBSOCKET_BRIDGE_PORT ${PORT}
-
-# define command
-CMD ["bash", "-c", "${LAUNCHFILE}"]
 
 # maintainer
 LABEL maintainer="Andrea F. Daniele (afdaniele@ttic.edu)"
