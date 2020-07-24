@@ -17,6 +17,7 @@ ARG LAUNCHER=default
 FROM duckietown/${BASE_IMAGE}:${BASE_TAG}
 
 # recall all arguments
+ARG PORT
 ARG ARCH
 ARG DISTRO
 ARG REPO_NAME
@@ -85,5 +86,4 @@ LABEL org.duckietown.label.module.type="${REPO_NAME}" \
 # <==================================================
 
 # configure environment
-ARG PORT
 ENV WEBSOCKET_BRIDGE_PORT ${PORT}
