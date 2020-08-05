@@ -12,7 +12,7 @@ dt-launchfile-init
 # launching app
 dt-exec roslaunch \
   --wait \
-  ${DT_REPO_PATH}/assets/rosbridge_websocket.launch \
+  rosbridge_websocket rosbridge_websocket.launch \
     port:=${WEBSOCKET_BRIDGE_PORT} \
     veh:="$VEHICLE_NAME"
 

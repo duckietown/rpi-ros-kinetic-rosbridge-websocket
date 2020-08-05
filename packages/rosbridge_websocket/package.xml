@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package>
+    <name>rosbridge_websocket</name>
+    <version>1.0.0</version>
+    <description>The rosbridge_websocket meta package</description>
+
+    <license>GPLv3</license>
+    <maintainer email="afdaniele@ttic.edu">Andrea F. Daniele</maintainer>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <build_depend>rospy</build_depend>
+
+    <run_depend>rospy</run_depend>
+
+</package>
